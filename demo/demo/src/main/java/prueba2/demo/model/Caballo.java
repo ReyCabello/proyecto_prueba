@@ -1,13 +1,15 @@
 package prueba2.demo.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -39,7 +41,7 @@ public class Caballo {
     private Integer edad;
 
     @ManyToOne
-    @JoinColumn(name = "raza_id")
+    @JoinColumn(name = "raza_id", nullable = false)
     private Raza raza;
 
     @ManyToOne
@@ -50,7 +52,7 @@ public class Caballo {
     @JoinColumn(name="entrenador_id")
     private Entrenador entrenador;
 
-    @ManyToMany
-    @JoinColumn(name="jinete_id")
-    private Jinete jinete;
+    @OneToMany(mappedBy = "caballo")
+    private List<Carrera> carreras;
+
 }
