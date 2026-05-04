@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -36,7 +38,13 @@ public class Caballo {
     @Column (nullable = false)
     private Integer edad;
 
-    
+    @ManyToOne
+    @JoinColumn(name = "raza_id")
+    private Raza raza;
+
+    @ManyToOne
+    @JoinColumn(name="cuadra_id")
+    private Cuadra cuadra;
 
 
 

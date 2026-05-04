@@ -1,8 +1,6 @@
 package prueba2.demo.model;
 
-import org.hibernate.annotations.Collate;
-
-import jakarta.persistence.Column;
+import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,24 +17,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "razas")
+@Table(name = "cuadra")
 
-public class Raza {
+public class Cuadra {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank( message = "El nombre es obligatorio")
-    @Column( nullable = false, length = 50 )
+    @NotBlank(message = "Este campo es obligatorio")
     private String nombre;
-
-    @NotBlank( message = "Este campo es obligatorio")
-    @Column(nullable = false)
-    private String origen;
-
-    @Column(length = 300)
-    private String descripcion;
-
 
 }
