@@ -1,11 +1,13 @@
 package prueba2.demo.model;
 
-import jakarta.annotation.Generated;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -36,9 +38,15 @@ public class Jinete {
 
     @NotBlank(message = "este campo es obligatorio")
     @Column(nullable = false)
-    private Integer años_experiencia;
+    private Integer anos_exp;
 
-    @Column(nullable = true, length = 300)
+    
+    private String titulos;
+
+    @Column(length = 300)
     private String comentario;
+
+    @ManyToMany(mappedBy = "jinete")
+    private List<Caballo> caballo;
 
 }

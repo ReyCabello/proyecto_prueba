@@ -1,12 +1,13 @@
 package prueba2.demo.model;
 
-import org.hibernate.annotations.Collate;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -38,5 +39,6 @@ public class Raza {
     @Column(length = 300)
     private String descripcion;
 
-
+    @OneToMany(mappedBy = "raza")
+    private List<Caballo> caballo;
 }

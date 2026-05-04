@@ -6,11 +6,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -46,6 +46,11 @@ public class Caballo {
     @JoinColumn(name="cuadra_id")
     private Cuadra cuadra;
 
+    @ManyToOne
+    @JoinColumn(name="entrenador_id")
+    private Entrenador entrenador;
 
-
+    @ManyToMany
+    @JoinColumn(name="jinete_id")
+    private Jinete jinete;
 }

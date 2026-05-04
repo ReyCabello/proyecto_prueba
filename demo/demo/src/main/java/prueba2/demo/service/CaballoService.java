@@ -2,8 +2,7 @@ package prueba2.demo.service;
 
 import java.util.List;
 
-import javax.management.RuntimeErrorException;
-
+import java.lang.RuntimeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,22 +18,22 @@ public class CaballoService {
     @Autowired
     private CaballoRepository caballoRepository;
 
-    public List<CaballoDTO> obtenertodos() {
+    public List<CaballoDTO> obtenerTodos() {
         return caballoRepository.findAll().stream()
                 .map(this::convertirADTO)
                 .toList();
     }
 
-    private CaballoDTO buscarPorId(Integer id) {
+    public CaballoDTO buscarPorId(Integer id) {
         Caballo caballo = caballoRepository.findById(id)
-            .orElseThrow(() -> new RuntimeErrorException(message:"Caballo no encontrado"));
+            .orElseThrow(() -> new RuntimeException("El caballo no existe"));
             return convertirADTO(caballo);
     }
 
     public String eliminar(Integer id) {
         try {
             Caballo caballo = caballoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeErrorException("¡Imposible eliminar! El caballo con ID " + id + " no existe."));
+                .orElseThrow(() -> new RuntimeException("¡Imposible eliminar! El caballo con ID " + id + " no existe."));
             caballoRepository.delete(caballo);
             return "El caballo" + caballo.getNombre() + " ha sido eliminado de la exitosamente";
         } catch (RuntimeException e) {
@@ -63,14 +62,14 @@ public class CaballoService {
         return caballoRepository.save(caballito);
     }
 
-    public List<CaballoDTO> buscarPorraza(String raza){
+    public List<CaballoDTO> buscarPorRaza(String raza){
         return caballoRepository.findByRaza(raza).stream()
                  .map(this::convertirADTO)
                  .toList();
     }
 
     public List<CaballoDTO> buscarPorEdad(Integer edad){
-        return caballoRepository.buscarPorEdad(edad).stream()
+        return caballoRepository.findByEdad(edad).stream()
                  .map(this::convertirADTO)
                  .toList();
     }
@@ -80,11 +79,11 @@ public class CaballoService {
         dto.setId(caballo.getId());
         dto.setNombre(caballo.getNombre());
         dto.setEdad(caballo.getEdad());
+        if (caballo.getRaza() != null) {
         dto.setRaza(caballo.getRaza());
-        dto.setCuadra(caballo.getCuadra());
-
+        }
         if (caballo.getCuadra() != null) {
-            dto.setNombreCuadra(caballogetCuadra().getNombre());
+            dto.setCuadra(caballo.getCuadra().getNombre());
         }
         return dto;
     }

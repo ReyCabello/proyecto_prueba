@@ -1,16 +1,20 @@
 package prueba2.demo.model;
 
-import jakarta.annotation.Generated;
+import java.util.List;
+
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @AllArgsConstructor
@@ -27,5 +31,9 @@ public class Cuadra {
 
     @NotBlank(message = "Este campo es obligatorio")
     private String nombre;
+
+    @OneToMany(mappedBy = "cuadra")
+    @ToString.Exclude
+    private List<Caballo> caballos;
 
 }
