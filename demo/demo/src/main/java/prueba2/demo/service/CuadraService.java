@@ -10,6 +10,7 @@ import jakarta.transaction.Transactional;
 import prueba2.demo.DTO.CuadraDTO;
 import prueba2.demo.model.Caballo;
 import prueba2.demo.model.Cuadra;
+import prueba2.demo.repository.CaballoRepository;
 import prueba2.demo.repository.CuadraRepository;
 
 @Service
@@ -18,6 +19,9 @@ public class CuadraService {
     
     @Autowired
     private CuadraRepository cuadraRepository;
+
+    @Autowired
+    private CaballoRepository caballoRepository;
 
     public List<CuadraDTO> obtenerTodos() {
         return cuadraRepository.findAll().stream()
@@ -60,6 +64,18 @@ public class CuadraService {
                  .map(this::convertirADTO)
                  .toList();
     }
+
+    public String expulsarCaballo(Integer cuadraId, Integer caballoId) {
+        Caballo caballo = caballoRepository.findById(caballoId)
+            .orElseThrow(() -> new RuntimeException("El caballo no existe."));
+        if (caballo.getCuadra() != null && caballo.getCuadra().getId().equals(cuadraId)) {
+            caballo.setCuadra(null);
+            caballoRepository.save(caballo);
+            return "El caballo ha sido expulsado de la cuadra y ahora es un caballo huacho.";
+        }
+        return "Error: El caballo no pertenece a esta cuadra, no puedes expulsarlo.";
+    }
+
 
     private CuadraDTO convertirADTO(Cuadra cuadra) {
         CuadraDTO dto = new CuadraDTO();

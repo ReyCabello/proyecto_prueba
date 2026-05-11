@@ -29,11 +29,11 @@ public class Entrenador {
      private Integer id;
 
     @NotBlank(message = "Este campo es obligatorio")
-    @Column(nullable = false)
+    
     private String nombre;
 
     @NotBlank(message = "Este campo es obligatorio")
-    @Column(nullable = false, name = "años_experiencia")
+    @Column(name = "años_experiencia")
     private Integer anosExp;
 
 

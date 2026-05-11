@@ -2,8 +2,6 @@ package prueba2.demo.model;
 
 import java.time.LocalDate;
 import java.util.List;
-
-import jakarta.persistence.Access;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,6 +12,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,15 +30,15 @@ public class Carrera {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank(message = "Este campo es obligatorio")
-    @Column(nullable = false, name = "fecha_de_carrera")
+    @NotNull(message = "Este campo es obligatorio")
+    @Column(nullable = false)
     private LocalDate fecha;
 
     @NotBlank(message = "Este campo es obligatorio")
     @Column(nullable = false)
     private String tipoCarrera;
 
-    @NotBlank(message = "Este campo es obligatorio")
+    @NotNull(message = "Este campo es obligatorio")
     @ManyToMany
     @JoinTable(
             name="carrera_caballo", 
@@ -48,8 +47,13 @@ public class Carrera {
         )
     private List<Caballo> caballos;
 
+    @ManyToOne
+    @JoinColumn(name = "recinto_id")
+    private Recinto recinto;
 
-    @NotBlank(message = "Campo obligatorio")
+
+
+    @NotNull(message = "Campo obligatorio")
     @ManyToMany
     @JoinTable(
             name="carrera_jinete",

@@ -78,4 +78,14 @@ public class CuadraController {
         }
     }
 
+    @DeleteMapping("/{cuadraId}/caballo/{caballoId}")
+    public ResponseEntity<String> expulsarCaballo(@PathVariable Integer cuadraId, @PathVariable Integer caballoId) {
+        try {
+            String resultado = cuadraService.expulsarCaballo(cuadraId, caballoId);
+            return new ResponseEntity<>(resultado, HttpStatus.OK);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
 }

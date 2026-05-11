@@ -9,10 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import prueba2.demo.DTO.CaballoDTO;
-import prueba2.demo.DTO.JineteDTO;
 import prueba2.demo.model.Caballo;
 import prueba2.demo.service.CaballoService;
-
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;

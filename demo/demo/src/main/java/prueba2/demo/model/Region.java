@@ -20,25 +20,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "razas")
-
-public class Raza {
+@Table(name = "region")
+public class Region {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank( message = "El nombre es obligatorio")
-    
+    @NotBlank(message = "El nombre es obligatorio")
+    @Column(nullable = false, unique = true)
     private String nombre;
 
-    @NotBlank( message = "Este campo es obligatorio")
-    
-    private String origen;
-
-    @Column(length = 300)
-    private String descripcion;
-
-    @OneToMany(mappedBy = "raza")
-    private List<Caballo> caballo;
+    @OneToMany(mappedBy = "region")
+    private List<Comuna> comunas;
 }

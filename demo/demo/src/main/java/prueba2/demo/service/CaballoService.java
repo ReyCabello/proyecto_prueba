@@ -1,14 +1,10 @@
 package prueba2.demo.service;
-
 import java.util.List;
-
 import java.lang.RuntimeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import jakarta.transaction.Transactional;
 import prueba2.demo.DTO.CaballoDTO;
-
 import prueba2.demo.model.Caballo;
 import prueba2.demo.repository.CaballoRepository;
 

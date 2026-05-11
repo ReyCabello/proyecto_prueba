@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
-import prueba2.demo.DTO.JineteDTO;
 import prueba2.demo.DTO.ResultadoDTO;
 import prueba2.demo.model.Caballo;
 import prueba2.demo.model.Resultado;
@@ -56,7 +55,7 @@ public class ResultadoService {
                 .map(this::convertirADTO)
                 .toList();
     }
-    
+
 
     private ResultadoDTO convertirADTO(Resultado resultado) {
         ResultadoDTO dto = new ResultadoDTO();

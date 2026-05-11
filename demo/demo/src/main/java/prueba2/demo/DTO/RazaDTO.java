@@ -3,10 +3,9 @@ package prueba2.demo.DTO;
 import lombok.Data;
 
 @Data
-public class EntrenadorDTO {
-
+public class RazaDTO {
     private Integer id;
     private String nombre;
-    private Integer anos_exp;
-    private String comentario;
+    private String descripcion;
+    private String origen;
 }
