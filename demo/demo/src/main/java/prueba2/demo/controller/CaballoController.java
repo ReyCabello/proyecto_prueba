@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import prueba2.demo.DTO.CaballoDTO;
+import prueba2.demo.DTO.JineteDTO;
 import prueba2.demo.model.Caballo;
 import prueba2.demo.service.CaballoService;
 
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/api/v1/caballos")
+
 public class CaballoController {
 
     @Autowired
@@ -105,4 +107,24 @@ public class CaballoController {
             return new ResponseEntity<>(resultado, HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping("/nombre/{nombre}")
+    public ResponseEntity<List<CaballoDTO>> buscarPorNombre(@PathVariable String nombre) {
+        List<CaballoDTO> caballos = caballoService.buscarPorNombre(nombre);
+        if (caballos.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(caballos, HttpStatus.OK);
+    }
+
+    @GetMapping("/seniors")
+    public ResponseEntity<List<CaballoDTO>> buscarSeniors(){
+        List<CaballoDTO> caballo = caballoService.buscarSeniors();
+        if (caballo.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(caballo, HttpStatus.OK);
+    }
+
+    
 }

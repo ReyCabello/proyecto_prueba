@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -35,9 +36,9 @@ public class Jinete {
     @Column(nullable = false)
     private Integer edad;
 
-    @NotBlank(message = "este campo es obligatorio")
+    @NotNull(message = "este campo es obligatorio")
     @Column(nullable = false)
-    private Integer anos_exp;
+    private Integer anosExp;
 
     
     private String titulos;

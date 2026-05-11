@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
 import prueba2.demo.DTO.CaballoDTO;
+
 import prueba2.demo.model.Caballo;
 import prueba2.demo.repository.CaballoRepository;
 
@@ -72,6 +73,18 @@ public class CaballoService {
         return caballoRepository.findByEdad(edad).stream()
                  .map(this::convertirADTO)
                  .toList();
+    }
+
+    public List<CaballoDTO> buscarPorNombre(String nombre) {
+    return caballoRepository.findByNombre(nombre).stream()
+            .map(this::convertirADTO)
+            .toList();
+}
+
+    public List<CaballoDTO> buscarSeniors() {
+        return caballoRepository.buscarSeniors().stream()
+                    .map(this::convertirADTO)
+                    .toList();
     }
 
     private CaballoDTO convertirADTO(Caballo caballo) {
