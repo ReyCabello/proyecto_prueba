@@ -35,13 +35,12 @@ public class Caballo {
     @Column (nullable = false, length = 50)
     private String nombre;
 
-    @NotBlank( message = "Este campo es obligatorio")
-    @NotNull (message = "No puede ser nulo")
+    @NotNull( message = "Este campo es obligatorio")   
     @Column (nullable = false)
     private Integer edad;
 
     @ManyToOne
-    @JoinColumn(name = "raza_id", nullable = false)
+    @JoinColumn(name = "raza_id")
     private Raza raza;
 
     @ManyToOne

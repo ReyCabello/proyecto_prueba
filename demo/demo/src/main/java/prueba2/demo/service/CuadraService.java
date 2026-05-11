@@ -1,5 +1,6 @@
 package prueba2.demo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
 import prueba2.demo.DTO.CuadraDTO;
+import prueba2.demo.model.Caballo;
 import prueba2.demo.model.Cuadra;
 import prueba2.demo.repository.CuadraRepository;
 
@@ -63,6 +65,14 @@ public class CuadraService {
         CuadraDTO dto = new CuadraDTO();
         dto.setId(cuadra.getId());
         dto.setNombre(cuadra.getNombre());
+
+        if (cuadra.getCaballos() != null) {
+            dto.setNombresCaballos(cuadra.getCaballos().stream()
+                                        .map(Caballo::getNombre)
+                                        .toList());
+        } else {
+            dto.setNombresCaballos(new ArrayList<>());
+        }
         return dto;
     }
 
