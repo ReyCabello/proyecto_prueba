@@ -12,7 +12,7 @@ Grupo: 4
 
 - Descripción
 
-El proyecto se basa en la creación de microservicios que almacenan datos relacionados con las carreras de caballos, permitiendo obtener estadísticas como:
+El proyecto se basa en la creación de microservicios que almacenan datos relacionados con las carreras de caballos, permitiendo obtener datos como:
 - Caballo ganador  
 - Cuadra a la que pertenece  
 - Entrenador responsable  
@@ -21,7 +21,8 @@ El proyecto se basa en la creación de microservicios que almacenan datos relaci
 Entre las funcionalidades implementadas se incluyen:
 - Búsqueda de caballos y jinetes experimentados  
 - Listado de caballos por raza, cuadra o edad  
-- Consulta de carreras por ID y obtención de los primeros tres lugares  
+- Consulta de carreras por ID y obtención de los primeros tres lugares
+- Caballo que más carreras ha ganado 
 - Búsqueda de jinetes, entrenadores y cuadras por nombre o ID  
 - Visualización de descripciones o comentarios detallados de jinetes y entrenadores  
 
@@ -35,4 +36,6 @@ Entre las funcionalidades implementadas se incluyen:
 
 3. Configurar la base de datos en el archivo application.properties.
 
-4. http://localhost:8080
+4. Asignar puerto http://localhost:8080
+
+5. Inicar programa.
