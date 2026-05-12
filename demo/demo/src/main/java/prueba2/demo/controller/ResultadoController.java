@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import prueba2.demo.DTO.ResultadoDTO;
+import prueba2.demo.service.CaballoService;
 import prueba2.demo.service.ResultadoService;
 
 
@@ -48,4 +49,5 @@ public class ResultadoController {
         }
         return new ResponseEntity<>(resultado,HttpStatus.OK);
     }
+   
 }

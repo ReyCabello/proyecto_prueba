@@ -1,4 +1,5 @@
 package prueba2.demo.service;
+import java.util.ArrayList;
 import java.util.List;
 import java.lang.RuntimeException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import jakarta.transaction.Transactional;
 import prueba2.demo.DTO.CaballoDTO;
 import prueba2.demo.model.Caballo;
 import prueba2.demo.repository.CaballoRepository;
+import prueba2.demo.repository.ResultadoRepository;
 
 @Service
 @Transactional
@@ -14,6 +16,9 @@ public class CaballoService {
 
     @Autowired
     private CaballoRepository caballoRepository;
+
+    @Autowired
+    private ResultadoRepository resultadoRepository;
 
     public List<CaballoDTO> obtenerTodos() {
         return caballoRepository.findAll().stream()
@@ -83,6 +88,21 @@ public class CaballoService {
                     .toList();
     }
 
+    public String contarVictorias(Integer id) {
+        try {
+            int victorias = resultadoRepository.contarVictoriasPorCaballo(id);
+
+            if (victorias == 0) {
+                throw new RuntimeException("El caballo con ID " + id + " no tiene victorias registradas.");
+            }
+
+            return "El caballo con ID " + id + " ha ganado " + victorias + " carreras.";
+        } catch (RuntimeException e) {
+            return e.getMessage();
+        }
+    }
+
+    
     private CaballoDTO convertirADTO(Caballo caballo) {
         CaballoDTO dto = new CaballoDTO();
         dto.setId(caballo.getId());

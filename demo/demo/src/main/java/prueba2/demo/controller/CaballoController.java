@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import prueba2.demo.DTO.CaballoDTO;
 import prueba2.demo.model.Caballo;
+import prueba2.demo.repository.ResultadoRepository;
 import prueba2.demo.service.CaballoService;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +29,9 @@ public class CaballoController {
 
     @Autowired
     private CaballoService caballoService;
+
+    @Autowired
+    private ResultadoRepository resultadoRepository;
 
     @GetMapping
     public ResponseEntity<List<CaballoDTO>> todosLosCaballos() {
@@ -122,6 +126,13 @@ public class CaballoController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(caballo, HttpStatus.OK);
+    }
+
+
+    @GetMapping("/{id}/victorias")
+    public ResponseEntity<String> contarVictorias(@PathVariable Integer id) {
+        String mensaje = caballoService.contarVictorias(id);
+        return ResponseEntity.ok(mensaje);
     }
 
     
